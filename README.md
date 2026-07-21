@@ -1,5 +1,6 @@
 PropTrack – Real Estate Management is a Salesforce-based property management application designed to simplify the management of properties and related real estate operations. The system allows users to create and manage property records with details such as address, property type, furnishing status, availability status, rent, and description. It also supports mandatory multiple property image uploads during property creation, along with server-side pagination and filtering based on rent, availability status, and furnishing status. The project also includes modules for managing Tenants, Lease Agreements, Maintenance Requests, and Vendors. It is implemented using Salesforce Admin configuration and Flow features such as Custom Objects, Custom Fields, Lookup Relationships, Page Layouts, Lightning App, Screen Flows, File Upload, and Validation Rules.
 
 Video Demonstration: https://drive.google.com/drive/folders/11FtmAERRshBSnSI8wZy0yPcdIbf1pSKR
+
 Platform: Salesforce
 Developer Edition Org: Salesforce Lightning Experience
