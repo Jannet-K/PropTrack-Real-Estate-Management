@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tenant</fullName>
+    <active>true</active>
+    <description>Tenant contacts renting one or more properties, distinct from vendor contacts.</description>
+    <label>Tenant</label>
+</RecordType>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_Active_Lease_Per_Property</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Lease_Status__c, &quot;Active&quot;),
+    Property__r.Has_Active_Lease__c = true,
+    OR(ISNEW(), ISCHANGED(Property__c), ISCHANGED(Lease_Status__c))
+)</errorConditionFormula>
+    <errorMessage>This property already has an active lease. End or renew the existing lease before creating a new one.</errorMessage>
+</ValidationRule>
