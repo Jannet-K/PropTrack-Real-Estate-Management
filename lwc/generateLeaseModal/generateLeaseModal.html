@@ -1,0 +1,64 @@
+<template>
+  <lightning-modal-header label="Generate Lease"></lightning-modal-header>
+  <lightning-modal-body>
+    <template if:true={errorMessage}>
+      <div class="slds-text-color_error slds-p-bottom_small">
+        {errorMessage}
+      </div>
+    </template>
+    <div class="slds-p-bottom_small">
+      <lightning-record-picker
+        label="Property"
+        placeholder="Search properties without an active lease..."
+        object-api-name="Property__c"
+        filter={propertyFilter}
+        onchange={handlePropertyChange}
+      ></lightning-record-picker>
+    </div>
+    <div class="slds-p-bottom_small">
+      <lightning-textarea
+        label="Terms"
+        value={terms}
+        onchange={handleTermsChange}
+      ></lightning-textarea>
+    </div>
+    <div class="slds-p-bottom_small">
+      <lightning-input
+        type="number"
+        step="0.01"
+        label="Agreed Monthly Rent"
+        value={agreedMonthlyRent}
+        onchange={handleRentChange}
+      ></lightning-input>
+    </div>
+    <div class="slds-p-bottom_small">
+      <lightning-input
+        type="date"
+        label="Start Date"
+        value={startDate}
+        onchange={handleStartDateChange}
+      ></lightning-input>
+    </div>
+    <div class="slds-p-bottom_small">
+      <lightning-input
+        type="date"
+        label="End Date"
+        value={endDate}
+        onchange={handleEndDateChange}
+      ></lightning-input>
+    </div>
+  </lightning-modal-body>
+  <lightning-modal-footer>
+    <lightning-button
+      label="Cancel"
+      onclick={handleCancel}
+      class="slds-m-right_x-small"
+    ></lightning-button>
+    <lightning-button
+      variant="brand"
+      label="Generate"
+      onclick={handleGenerate}
+      disabled={isSaveDisabled}
+    ></lightning-button>
+  </lightning-modal-footer>
+</template>

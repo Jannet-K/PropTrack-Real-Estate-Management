@@ -1,0 +1,111 @@
+<template>
+  <lightning-card title="Properties" icon-name="standard:real_estate_broker">
+    <lightning-button
+      slot="actions"
+      label="New Property"
+      variant="brand"
+      onclick={handleNewProperty}
+    ></lightning-button>
+    <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+      <div
+        class="slds-grid slds-gutters slds-wrap slds-grid_vertical-align-end slds-m-bottom_small"
+      >
+        <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+          <lightning-input
+            type="number"
+            label="Min Rent"
+            value={minRent}
+            onchange={handleMinRentChange}
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+          <lightning-input
+            type="number"
+            label="Max Rent"
+            value={maxRent}
+            onchange={handleMaxRentChange}
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+          <lightning-combobox
+            label="Availability Status"
+            value={status}
+            options={statusOptions}
+            onchange={handleStatusChange}
+          ></lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5">
+          <lightning-combobox
+            label="Furnishing Status"
+            value={furnishingStatus}
+            options={furnishingOptions}
+            onchange={handleFurnishingStatusChange}
+          ></lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-5">
+          <lightning-button
+            label="Apply Filters"
+            variant="brand"
+            onclick={handleApplyFilters}
+            class="slds-m-right_x-small"
+          ></lightning-button>
+          <lightning-button
+            label="Reset"
+            onclick={handleResetFilters}
+          ></lightning-button>
+        </div>
+      </div>
+
+      <template if:true={isLoading}>
+        <lightning-spinner
+          alternative-text="Loading properties"
+          size="medium"
+        ></lightning-spinner>
+      </template>
+
+      <template if:true={errorMessage}>
+        <div class="slds-text-color_error slds-p-vertical_small">
+          <p>{errorMessage}</p>
+          <lightning-button
+            label="Retry"
+            onclick={loadProperties}
+          ></lightning-button>
+        </div>
+      </template>
+
+      <template if:true={hasRecords}>
+        <lightning-datatable
+          key-field="Id"
+          data={records}
+          columns={columns}
+          hide-checkbox-column
+          show-row-number-column
+        ></lightning-datatable>
+
+        <div
+          class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-top_small"
+        >
+          <lightning-button-icon
+            icon-name="utility:chevronleft"
+            alternative-text="Previous page"
+            disabled={isFirstPage}
+            onclick={handlePrevious}
+          ></lightning-button-icon>
+          <span class="slds-p-horizontal_small">{paginationSummary}</span>
+          <lightning-button-icon
+            icon-name="utility:chevronright"
+            alternative-text="Next page"
+            disabled={isLastPage}
+            onclick={handleNext}
+          ></lightning-button-icon>
+        </div>
+      </template>
+
+      <template if:true={isEmpty}>
+        <p class="slds-p-vertical_medium slds-text-align_center">
+          No properties found matching your filters.
+        </p>
+      </template>
+    </div>
+  </lightning-card>
+</template>
